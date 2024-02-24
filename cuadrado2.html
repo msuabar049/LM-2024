@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #contenedor {
+            width: 500px;
+            height: 500px;
+            background-color: grey;
+            position: relative;
+            overflow: hidden;
+        }
+        #cuadrado {
+            width: 50px;
+            height: 50px;
+            background-color: #f00;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var contenedor = document.querySelector("#contenedor");
+            var cuadrado = document.querySelector("#cuadrado");
+
+            //Es necesario definir el estilo en CSS ya que no podemos obtener los valores al estar definidos en el CSS
+            contenedor.style.width = "500px";
+            contenedor.style.height = "500px";
+
+            document.addEventListener("keydown", function(event) {
+                switch (event.key) {
+                    case "ArrowUp":
+                        subir(cuadrado);
+                        break;
+                    case "ArrowDown":
+                        bajar(cuadrado);
+                        break;
+                    case "ArrowLeft":
+                        izquierda(cuadrado);
+                        break;
+                    case "ArrowRight":
+                        derecha(cuadrado);
+                        break;
+                }
+            });
+        };
+        function subir(cuadrado) {
+            cuadrado.style.top = "10px";
+        }
+        function bajar(cuadrado) {      
+            var altura = parseInt(contenedor.style.height) - 60;
+            cuadrado.style.top = altura + "px";
+        }
+        function izquierda(cuadrado) {
+            cuadrado.style.left = "10px";
+        }
+        function derecha(cuadrado) {
+            var ancho = parseInt(contenedor.style.width) - 60;
+            cuadrado.style.left = ancho + "px";
+        }
+
+    </script>
+</head>
+<body>
+    <div id="contenedor">
+        <div id="cuadrado"></div>
+    </div>
+</body>
+</html>
