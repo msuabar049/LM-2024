@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var intervalo;
+        var puntos = 0;       
+        var vidas = 3;
+        var velocidad = 10;
+
+        window.onload = function(){
+            var contenedor=crearContenedor();
+            document.getElementById('vidasSpan').textContent = vidas;
+            document.getElementById('puntosSpan').textContent = puntos; 
+        
+            var gota=crearGota(contenedor);
+            
+            intervalo = setInterval(caer,velocidad, gota, contenedor );
+           
+            var barra = barraCapturaGotas();
+            contenedor.appendChild(barra);
+            document.onkeydown = function(event){
+                var barra = document.getElementById('barra');
+                var left = parseInt(barra.style.left);
+                if (event.key == 'ArrowRight'){
+                    left+=10;
+                    barra.style.left = left + 'px';
+                }
+                if (event.key == 'ArrowLeft'){
+                    left-=10;
+                    barra.style.left = left + 'px';
+                }
+            }
+        }
+        function crearContenedor(){
+            var contenedor = document.getElementById('contenedor');
+            contenedor.style.width = '60%';
+            contenedor.style.height = '500px';
+            contenedor.style.border = '1px solid black';
+            contenedor.style.position = 'relative';
+            contenedor.style.margin = 'auto';
+            contenedor.style.overflow = 'hidden';
+            contenedor.style.backgroundColor = 'lightblue';
+            return contenedor;
+        }
+        function crearGota(contenedor){
+                var left = Math.random() * contenedor.clientWidth;
+                var gota = document.createElement('div');
+                gota.id = 'gota';
+                gota.style.width = '10px';
+                gota.style.height = '10px';
+                gota.style.position = 'absolute';
+                gota.style.backgroundColor = 'blue';
+                gota.style.left = left+'px';
+                gota.style.top = '10px';
+                contenedor.appendChild(gota);
+                return gota;
+        }
+
+        function caer(gota, contenedor){
+            var top = parseInt(gota.style.top);
+            top+=1;
+            gota.style.top = top + 'px';
+
+            if (top > contenedor.clientHeight){
+                clearInterval(intervalo);
+                contenedor.removeChild(gota);
+                gota=crearGota(contenedor);
+                velocidad=velocidad+0.1;
+                vidas--;
+                document.getElementById('vidasSpan').textContent = vidas;
+                if (vidas == 0){
+                    alert('Game Over');
+                }
+                else{
+                    intervalo = setInterval(caer,velocidad, gota, contenedor );
+                }
+            }
+            else if (top > contenedor.clientHeight - 40){
+                var barra = document.getElementById('barra');
+                var leftBarra = parseInt(barra.style.left);
+                var leftGota = parseInt(gota.style.left);
+                if (leftGota > leftBarra && leftGota < leftBarra + 100){
+                    clearInterval(intervalo);
+                    contenedor.removeChild(gota);
+                    gota=crearGota(contenedor);
+                    velocidad=velocidad+0.1;
+                    puntos++;
+                    document.getElementById('puntosSpan').textContent = puntos;
+                    intervalo = setInterval(caer,velocidad, gota, contenedor );
+                }
+            }
+        }
+
+        function barraCapturaGotas(){
+            var barra = document.createElement('div');
+            barra.id = 'barra';
+            barra.style.width = '100px';
+            barra.style.height = '20px';
+            barra.style.position = 'absolute';
+            barra.style.bottom = '10px';
+            barra.style.left = '40%';
+            barra.style.backgroundColor = 'lightgreen';
+            barra.style.margin = 'auto';
+            barra.style.overflow = 'hidden';
+            barra.style.border = '1px solid black';
+            return barra;
+        }
+
+
+    </script>
+</head>
+<body>
+    <div id="contenedor">
+    </div>
+    <div id="puntos">
+        <h1>Puntos: <span id="puntosSpan"></span></h1>
+    </div>
+    <div id="vidas">
+        <h1>Vidas: <span id="vidasSpan"></span></h1>
+    </div>
+</body>
+</html>

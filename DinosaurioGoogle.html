@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #pantalla {
+            width: 600px;
+            height: 150px;
+            background-color: grey;
+            position: relative;
+            overflow: hidden;
+        }
+        #dinosaurio {
+            width: 15px;
+            height: 20px;
+            background-color: #f00;
+            position: absolute;
+            bottom: 5px;
+            left: 10px;
+        }
+        .objeto {
+            width: 10px;
+            height: 10px;
+            background-color: #00f;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var velocidad = 5;
+            var contenedor = document.querySelector("#pantalla");
+            var dino = document.querySelector("#dinosaurio");
+
+            document.addEventListener("keydown", function(event) {
+                if (event.key="ArrowUp") {
+                    saltar(dino);
+                }
+            });
+            var obstaculo = crearObjeto(contenedor);
+            var intervalo = setInterval(desplazar,velocidad,obstaculo,dino);
+        };
+
+        function crearObjeto(contenedor) {
+            var objeto = document.createElement("div");
+            objeto.className = "objeto";
+            contenedor.appendChild(objeto);
+            objeto.style.right = "10px";
+            return objeto;
+        }
+
+        function saltar(dino) {
+            setInterval(subir, 50, dino);
+            setInterval(bajar, 100, dino);
+        }
+        function subir(dino) {
+            var bottom = parseInt(dino.style.bottom);
+            bottom+=5;
+            dino.style.bottom = bottom + 'px';
+        }
+        function bajar(dino) {
+            var bottom = parseInt(dino.style.bottom);
+            bottom-=5;
+            dino.style.bottom = bottom + 'px';
+        }
+
+        function desplazar(obstaculo,dino) {
+            var derecha = parseInt(obstaculo.style.right);
+            derecha+=1;
+            obstaculo.style.right = derecha + 'px';
+            if (derecha >= 600) {
+                obstaculo.style.right = "10px";
+                obstaculo.style.top = Math.random() * 130 + "px";
+            }
+            if (colision(dino, obstaculo)) {
+                alert("Perdiste");
+                clearInterval(intervalo);
+            }
+        }
+        function colision(dino, obstaculo) {
+            var x1 = parseInt(dino.style.left);
+            var y1 = parseInt(dino.style.bottom);
+            var h1 = parseInt(dino.style.height);
+            var w1 = parseInt(dino.style.width);
+            var x2 = parseInt(obstaculo.style.right);
+            var y2 = parseInt(obstaculo.style.top);
+            var h2 = parseInt(obstaculo.style.height);
+            var w2 = parseInt(obstaculo.style.width);
+            if (x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2) {
+                return true;
+            }
+            return false;
+        }
+
+    </script>
+</head>
+<body>
+    <div id="pantalla">
+        <div id="dinosaurio"></div>
+    </div>
+</body>
+</html>
