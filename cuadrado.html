@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #contenedor {
+            width: 500px;
+            height: 500px;
+            background-color: grey;
+            position: relative;
+            overflow: hidden;
+        }
+        #cuadrado {
+            width: 50px;
+            height: 50px;
+            background-color: #f00;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .objeto {
+            background-color: #00f;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var velocidad = 1500;
+            var contenedor = document.querySelector("#contenedor");
+            var cuadrado = document.querySelector("#cuadrado");
+            var intervalor = setInterval(crearObjeto,velocidad,contenedor);
+            cuadrado.style.top = "10px";
+            cuadrado.style.left = "10px";
+            cuadrado.style.width = "50px";
+            cuadrado.style.height = "50px";
+            document.addEventListener("keydown", function(event) {
+                switch (event.key) {
+                    case "ArrowUp":
+                        subir(cuadrado);
+                        break;
+                    case "ArrowDown":
+                        bajar(cuadrado);
+                        break;
+                    case "ArrowLeft":
+                        izquierda(cuadrado);
+                        break;
+                    case "ArrowRight":
+                        derecha(cuadrado);
+                        break;
+                }
+            });
+        };
+        function subir(cuadrado) {
+            var top = parseInt(cuadrado.style.top);
+            cuadrado.style.top = (top - 10) + "px";
+        }
+        function bajar(cuadrado) {            
+            var top = parseInt(cuadrado.style.top);
+            cuadrado.style.top = (top + 10) + "px";
+        }
+        function izquierda(cuadrado) {
+            var left = parseInt(cuadrado.style.left);
+            cuadrado.style.left = (left - 10) + "px";
+        }
+        function derecha(cuadrado) {
+            var left = parseInt(cuadrado.style.left);
+            cuadrado.style.left = (left + 10) + "px";
+        }
+        function crearObjeto(contenedor) {
+            var objeto = document.createElement("div");
+            objeto.className = "objeto";
+            contenedor.appendChild(objeto);
+            var left = Math.random() * 500;
+            objeto.style.top = "10px";
+            objeto.style.left = left+"px";
+            objeto.style.width = "10px";
+            objeto.style.height = "10px";
+            var velocidad2 = Math.random() * 1000;  
+            setInterval(caer, velocidad2, objeto);
+        }
+        function caer(objeto) {
+            var top = parseInt(objeto.style.top);
+            objeto.style.top = (top + 10) + "px";
+            if (top >= 500) {
+                objeto.style.top = "10px";
+                objeto.style.left = Math.random() * 500 + "px";
+            }
+            if (colision(objeto)) {
+                alert("Perdiste");
+                clearInterval(intervalor);
+            }
+        }
+        function colision(objeto) {
+            var x1 = parseInt(objeto.style.left);
+            var y1 = parseInt(objeto.style.top);
+            var h1 = parseInt(objeto.style.height);
+            var w1 = parseInt(objeto.style.width);
+            var x2 = parseInt(cuadrado.style.left);
+            var y2 = parseInt(cuadrado.style.top);
+            var h2 = parseInt(cuadrado.style.height);
+            var w2 = parseInt(cuadrado.style.width);
+
+            if (x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2) {
+                return true;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div id="contenedor">
+        <div id="cuadrado"></div>
+    </div>
+</body>
+</html>
