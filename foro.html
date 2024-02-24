@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .comentario{
+            border: 1px solid black;
+            margin: 10px;
+            padding: 10px;
+            color: grey;
+            background-color: blanchedalmond;
+        }
+    </style>
+    <script>
+        window.onload = inicializar;
+        var comentarios, autor, comment, envio, contador;
+        function inicializar(){
+            comentarios = document.querySelector("#contenedorComentarios");
+            autor = document.querySelector("input[name='usuario']");
+            comment = document.querySelector("textarea");
+            contador = document.querySelector("#contador");
+            cargarComentarios();
+
+            if (comentarios.childElementCount != 0){
+                mostrarNumeroComentarios();
+            }
+        }
+
+        function almacenar(){
+            var nuevoComentario=document.createElement("div");
+            nuevoComentario.className="comentario";
+            var fechaHora = new Date().toLocaleDateString('es-es', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
+            nuevoComentario.innerHTML= fechaHora+"    <b> "+autor.value + "</b> - <i>" + comment.value+"</i>";
+            comentarios.appendChild(nuevoComentario);
+            mostrarNumeroComentarios();
+            localStorage.setItem("comentario", comentarios.innerHTML);
+        }
+
+        function cargarComentarios(){
+            comentarios.innerHTML = localStorage.getItem("comentario");
+        }
+
+        function mostrarNumeroComentarios(){
+            contador.innerHTML = "Número de comentarios: " + comentarios.childElementCount + "  <input type='button' value='Borrar' onclick='borrarComentarios()'>";
+        }
+
+        function borrarComentarios(){
+            localStorage.clear();
+            cargarComentarios();
+            contador.innerHTML = "";
+        }
+
+    </script>
+</head>
+<body>
+    <h1>ESCRIBE TU COMENTARIO</h1>
+    
+    <form name="comentario">
+        <fieldset>
+            <legend>Nueva entrada</legend>
+            <label for="usuario">Usuario:</label>
+            <input type="text" name="usuario" id="usuario"><br><br>
+            <label for="area">Escribe tu comentario:</label><br>
+            <textarea cols="80" rows="15" id="area" name="area"></textarea><br>
+            <input type="button" value="Enviar" onclick="almacenar()">       
+        </fieldset>
+    </form><br>
+    <div id="contador"></div><br>
+    <h1>COMENTARIOS</h1>
+    <div id="contenedorComentarios"></div>
+</body>
+</html>
