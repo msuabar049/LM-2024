@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            document.onmousemove = posicionRaton;
+        }
+        function posicionRaton(event){
+            var Nx = event.clientX;
+            var Ny = event.clientY;
+            document.getElementById('posicionNavegador').children[1].textContent = 'Posicion X: ' + Nx;
+            document.getElementById('posicionNavegador').children[2].textContent = 'Posicion Y: ' + Ny;
+
+            var Px = event.screenX;
+            var Py = event.screenY;
+            document.getElementById('posicionPantalla').children[1].textContent = 'Posicion X: ' + Px;
+            document.getElementById('posicionPantalla').children[2].textContent = 'Posicion Y: ' + Py;
+        }
+    </script>
+</head>
+<body>
+    <div id="posicionNavegador">
+        <h1>Posición navegador</h1>
+        <span>Posicion X:</span>
+        <span>Posicion Y:</span>
+    </div>
+    <div id="posicionPantalla">
+        <h1>Posición pantalla</h1>
+        <span>Posicion X:</span>
+        <span>Posicion Y:</span>
+    </div>
+</body>
+</html>
