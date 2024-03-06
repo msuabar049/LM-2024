@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #contenedor{
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+        }
+
+        .sinResponder{
+            background-color: grey;
+            color: black;
+        }
+
+        .respuestaCorrecta{
+            background-color: green;
+            color: pink;
+        }
+
+        .respuestaIncorrecta{
+            background-color: red;
+            color: brown;
+        }
+    </style>
+
+    <script>
+        var num1, num2;
+        var resul, reps, conten;
+        var max = 20;
+        var min = 1;
+        window.onload = inicializar;
+
+        function inicializar(){
+            num1=Math.floor(Math.random()*max + min);
+            num2=Math.floor(Math.random()*max + min);
+            var preg=document.querySelector("#pregunta");
+            preg.innerHTML = "<h1>¿Cuanto es "+num1+" * "+num2+"?</h1>";
+        }
+
+        function comprueba(){
+            resp=document.querySelector("#respuesta");
+            resul=document.querySelector("#resultado");
+            conten=document.querySelector("#contenedor");
+            
+            if (resp.value==num1*num2){
+                resul.innerHTML= "<h1>RESULTADO CORRECTO</h1>";
+                conten.className="respuestaCorrecta"
+            }else{
+                resul.innerHTML= "<h1>RESULTADO INCORRECTO</h1>";
+                conten.className="respuestaIncorrecta"
+            }
+        }
+
+        function nuevaPregunta(){
+            conten=document.querySelector("#contenedor");
+            inicializar();          
+            resul.innerHTML="";
+            conten.className="sinResponder";
+        }
+    </script>
+</head>
+<body>
+    <div id="contenedor" class="sinResponder">
+        <div id="pregunta"></div><br>
+        <form>
+            <input type="text" id="respuesta" name="respuesta"><br>
+            <input type="button" id="comprobar" name="comprobar" value="Comprobar" onclick="comprueba()">
+            <input type="button" id="preguntar" name="preguntar" value="Nueva pregunta" onclick="nuevaPregunta()">
+        </form>
+        <div id="resultado"></div>
+    </div>
+
+</body>
+</html>     

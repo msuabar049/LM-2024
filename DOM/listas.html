@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var lista;
+        window.onload=inicializar;
+
+        function inicializar(){
+            lista = document.querySelector("#miLista");
+        }
+
+        function delante(){
+            var texto=document.querySelector("#nuevo");
+            lista.insertAdjacentHTML("afterbegin","<li>"+texto.value+"</li>")
+        }
+
+        function detras(){
+            var texto=document.querySelector("#nuevo");
+            lista.insertAdjacentHTML("beforeend","<li>"+texto.value+"</li>")
+        }
+
+        function eliminar(){
+            var numElemento = document.getElementById("borrar");
+            var num = numElemento.value;
+            if(num<1 || num>lista.children.length){
+                alert("Elemento inexistente");
+            }else{
+                lista.children[num-1].remove();
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <form name="miFormulario">
+        <label for="nuevo">Texto: </label>
+        <input type="text" id="nuevo" name="nuevo">
+        <input type="button" id="miBoton" onclick="delante()" value="delante">
+        <input type="button" id="miBoton2" onclick="detras()" value="detras"><br>
+        <label for="borrar">Nº elemento a borrar: </label>
+        <input type="number" id="borrar" name="borrar">
+        <input type="button" id="miBoton2" onclick="eliminar()" value="borrar"><br>
+    </form>
+    <ol id="miLista">
+        <li>Elemento1</li>
+    </ol>
+</body>
+</html>

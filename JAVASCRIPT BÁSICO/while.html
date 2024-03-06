@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function mostrarTabla(nombres, notas){
+            document.write("<table border=1><tr><th>NOMBRE</th><th>NOTA</th></tr>");
+            var i = 0;
+            var suma = 0;
+            var medira = 0;
+            while (i<nombres.length){
+                document.write("<tr><td><b>"+nombres[i]+"</b></td><td>");
+                if (notas[i]<5){
+                    document.write("<font color='red'>"+notas[i]+"</font>");
+                }else if (notas[i]<8){
+                    document.write("<font color='orange'>"+notas[i]+"</font>");
+                }else{
+                    document.write("<font color='green'>"+notas[i]+"</font>");
+                }
+                    
+                document.write("</td></tr>");
+                suma+=notas[i];
+                i++;
+            }
+            media = suma/notas.length;
+            document.write("<tr><td colspan='2'><b>Media:</b>"+media.toFixed(2)+"</td></tr>")
+            document.write("</table><br><br>");
+        }
+
+
+        var nombresASIR = ["miguel","juan","pepe","ana","antonio","luis"];
+        var notasASIR = [2,5,7,8,9,3];
+        mostrarTabla(nombresASIR,notasASIR);
+
+        var nombresDAW = ["manuel","pepito","juan","manolo","alberto"];
+        var notasDAW = [3,6,9,4,2];
+        mostrarTabla(nombresDAW,notasDAW);
+
+        alert("5">"4");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

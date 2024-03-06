@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hijo{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 1 solid blue;
+            background-color: blue;
+        }
+        #contenedor{
+            position: relative;
+            top: 5px;
+            width: 500px;
+            height: 500px;
+            border: 1 solid grey;
+            background-color: lightgrey;
+        }
+    </style>
+    <script>
+        var principal, posX, posY;
+        window.onload = inicializar;
+        
+        function inicializar(){
+            principal = document.querySelector("#contenedor");
+        }
+
+        function nuevo(){
+            var nuevo=document.createElement("p");
+            nuevo.className="hijo";
+
+            posX=document.querySelector("#cX").value;
+            posY=document.querySelector("#cY").value;
+            alert(posX);
+            alert(posY);
+            nuevo.style.top=posY+"px";
+            nuevo.style.left=posX+"px";
+            contenedor.appendChild(nuevo);
+        }
+    </script>
+</head>
+<body>
+    <div id="contenedor">
+    </div><br>
+    <form name="incluir">
+        <label for="cX">X: </label>
+        <input type="text" id="cX" name="cX"><br>
+        <label for="cX">Y: </label>
+        <input type="text" id="cY" name="cY"><br>
+    </form>
+    <a href="#" id="nuevo" onclick="nuevo()">Añade</a>
+</body>
+</html>

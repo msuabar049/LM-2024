@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/JavaScript" src="formulario.js"></script>
+</head>
+<body>
+    <fieldset> <legend>Calculadora</legend>
+    <form name="calculadora">
+        <input type="button" name="suma" value="+" onclick="sumar()">
+        <input type="button" name="resta" value="-" onclick="restar()">
+        <input type="button" name="multiplicacion" value="*" onclick="multiplicar()">
+        <input type="button" name="division" value="/" onclick="dividir()"><br><br>
+        <label for="numero1">Numero1:</label>
+        <input type="text" name="numero1"><br>
+        <label for="numero2">Numero2:</label>
+        <input type="text" name="numero2"><br>
+        <textarea cols="50" rows="20" name="resultado"></textarea>
+    </form>
+    </fieldset>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var array1 = ["pedro","sami","paula","miguel","fabian"];
+        var array2 = [18,19,28,25,20];
+        var i=0;
+        var suma=0;
+        var max=0;
+        var posMax=0;
+        document.write("<table border=1>"+"<tr><th>NOMBRE</th><th>EDAD</th></tr>");
+        while (i<array1.length){
+            document.write("<tr><td>"+array1[i]+"</td><td>"+array2[i]+"</td></tr>");
+            suma=suma+array2[i];
+            i++;
+            if (array2[i]>max){
+                max=array2[i];
+                posMax=i;
+            }
+        }
+        var media=suma/array2.length;
+        document.write("<tr><td colspan='2'>"+"Media: "+media+"</td></tr>");
+        document.write("<tr><td colspan='2'>"+"Mayor: "+array1[posMax]+"</td></tr>");
+        document.write("</table>")
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="Ejemplo5.js"></script>
+</head>
+<body>
+    <form name="sumaNumeros" methdo="get" onsubmit="return comprueba()" action="Ejemplo5.html">
+        <label for="numero1">Numero1:</label>
+        <input type="text" name="numero1" id="numero1"><br>
+        <label for="numero2">Numero2:</label>
+        <input type="text" name="numero2" id="numero2"><br>
+        <input type="button" name="sumar" value="Sumar" onclick="suma()">
+        <input type="button" name="restar" value="Restar" onclick="resta()">
+        <input type="button" name="mostrar" value="mostrar" onclick="mostrarFormulario()"><br>
+        <input type="submit" name="comprobar" value="comprobar"><br>
+        <textarea rows="10" cols="50" name="resultado" id="resultado"></textarea>
+    </form>
+</body>
+</html>

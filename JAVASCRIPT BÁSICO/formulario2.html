@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function rellenar(){
+            var nombre=document.forms[0].elements[0].value;
+            var dni=document.forms[0].elements[1].value;
+            var mail=document.forms[0].elements[2].value;
+            var mail2=document.forms[0].elements[3].value;
+            var cadena="Nombre: "+nombre+"\nDNI: "+dni+"\nMail1: "+mail+"\nMail2: "+mail2;
+            document.forms[0].elements[6].value=cadena;
+        }
+
+        function comprobar(){
+            var mail=document.forms[0].elements[2].value;
+            var mail2=document.forms[0].elements[3].value;  
+
+            if (mail==mail2){
+                return true;
+            }
+            else{
+                alert("Los mail no coinciden");
+                return false;
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <form name="registro" action="formulario.html" onsubmit="return comprobar()">
+        <label for="nombre">Nombre: </label>
+        <input type="text" name="nombre" id="nombre"><br>
+        <label for="dni">DNI: </label>
+        <input type="text" name="dni" id="dni"><br>
+        <label for="mail">Mail: </label>
+        <input type="text" name="mail" id="mail"><br>
+        <label for="mail2">Repite mail: </label>
+        <input type="text" name="mail2" id="mail2"><br>
+        <input type="button" name="mostrar" value="mostrar" onclick="rellenar()">
+        <input type="submit" name="enviar" value="enviar"><br><br>
+        <textarea cols="30" rows="20" name="resultado"></textarea>
+    </form>
+</body>
+</html>
