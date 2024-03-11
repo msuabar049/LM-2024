@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var movil, ejeY, ejeX;
+        window.onload=inicializar;
+
+        function inicializar(){
+            movil = document.querySelector("#cajaMovil");
+            ejeX=210;
+            ejeY=0;
+            document.addEventListener("keydown",function(event){
+                switch(event.code){
+                    case "ArrowLeft":
+                        if (ejeX>0){
+                            ejeX-=10;
+                            movil.style.left=ejeX+"px";
+                        }
+                        break;
+                    case "ArrowRight":
+                        if (ejeX<420){
+                            ejeX+=10;
+                            movil.style.left=ejeX+"px";
+                        }
+                        break;
+                    case "ArrowUp":
+                        if (ejeY>0){
+                            ejeY-=10;
+                            movil.style.top=ejeY+"px";
+                        }
+                        break;
+                    case "ArrowDown":
+                        if (ejeY<450){
+                            ejeY+=10;
+                            movil.style.top=ejeY+"px";
+                        }
+                        break;
+                }  
+            });
+        }
+    </script>
+    <style>
+        #contenedor{
+            width: 500px;
+            height: 500px;
+            background-color: grey;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+
+        #cajaMovil{
+            width: 80px;
+            height: 20px;
+            background-color: red;
+            position: absolute;
+            bottom: 10px;
+            left: 210px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+    <div id="contenedor">
+        <div id="cajaMovil"></div>
+    </div>
+</body>
+</html>

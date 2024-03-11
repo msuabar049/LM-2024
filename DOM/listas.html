@@ -5,21 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        var lista;
+        var lista, b1, b2, b3;
         window.onload=inicializar;
 
         function inicializar(){
+            b1 = document.querySelector("#miBoton");
+            b1.addEventListener("click",delante)
+            b1.addEventListener("mouseover",cambiaColor)
+            b2 = document.querySelector("#miBoton2");
+            b2.addEventListener("click",detras);
+            b3 = document.querySelector("#miBoton3");
+            b3.addEventListener("click",eliminar);
             lista = document.querySelector("#miLista");
         }
 
         function delante(){
             var texto=document.querySelector("#nuevo");
-            lista.insertAdjacentHTML("afterbegin","<li>"+texto.value+"</li>")
+            lista.insertAdjacentHTML("afterbegin","<li>"+texto.value+"</li>");
         }
 
         function detras(){
             var texto=document.querySelector("#nuevo");
-            lista.insertAdjacentHTML("beforeend","<li>"+texto.value+"</li>")
+            lista.insertAdjacentHTML("beforeend","<li>"+texto.value+"</li>");
         }
 
         function eliminar(){
@@ -32,17 +39,21 @@
             }
         }
 
+        function cambiaColor(){
+            b1.style.backgroundColor=red;
+        }
+
     </script>
 </head>
 <body>
     <form name="miFormulario">
         <label for="nuevo">Texto: </label>
         <input type="text" id="nuevo" name="nuevo">
-        <input type="button" id="miBoton" onclick="delante()" value="delante">
-        <input type="button" id="miBoton2" onclick="detras()" value="detras"><br>
+        <input type="button" id="miBoton" value="delante">
+        <input type="button" id="miBoton2" value="detras"><br>
         <label for="borrar">Nº elemento a borrar: </label>
         <input type="number" id="borrar" name="borrar">
-        <input type="button" id="miBoton2" onclick="eliminar()" value="borrar"><br>
+        <input type="button" id="miBoton3" value="borrar"><br>
     </form>
     <ol id="miLista">
         <li>Elemento1</li>

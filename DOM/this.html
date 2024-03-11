@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #contenedor{
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            position: relative;
+            background-color: aqua;
+        }
+       
+    </style>
+    <script>
+        function cambiaRojo(x){
+            x.style.backgroundColor="red";
+        }
+
+        function cambiaAzul(y){
+            y.style.backgroundColor="blue";
+        }
+    </script>
+</head>
+<body>
+    <div id="contenedor" onmouseover="cambiaRojo(this)" onclick="cambiaAzul(this)"></div>
+</body>
+</html>
